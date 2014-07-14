@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html ng-app="cartApp" ng-controller="CartCtrl">
+<html ng-app="cartApp">
 	<head>
 		<meta charset="UTF-8">
 		<title>Cosmic Cart</title>
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>		
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-route.min.js">
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script src="js/index.js"></script>
 		
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	</head>
 
-	<body>
-		<h1>{{value}} Wassup Viknes!</h1>
+	<body ng-controller="CartCtrl">
+		<h2>My Shopping Cart</h2>
+		<div class="row col-xs-12 col-lg-6">
+			<div class="well">
+				<div ng-view></div>
+			</div>
+		</div>
 	</body>
 </html>

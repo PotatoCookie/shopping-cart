@@ -1,0 +1,20 @@
+<input type="text" ng-model="search" class="search-query" placeholder="Search">
+<table class="table">
+	<thead>
+		<tr>
+			<th>Item</th>
+			<th>Qty</th>
+			<th>Price</th>
+			<th><a href="#/new"><span class="glyphicon glyphicon-plus"></span></a></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in cart | filter:search | orderBy:'name'">
+			<td>{{item.name}}</td>
+			<td>{{item.qty}}</td>
+			<td>{{item.price}}</td>
+			<td><a href="#/edit/{{item.id}}"><span class="glyphicon glyphicon-pencil"></span></i></a>
+			</td>
+		</tr>
+	</tbody>
+</table>
