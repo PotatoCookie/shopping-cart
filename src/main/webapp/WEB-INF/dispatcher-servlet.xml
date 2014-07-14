@@ -7,14 +7,21 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm.xsd">
 
-	<!-- Scan for controllers -->
-	<context:component-scan base-package="org.cosmic.cart.controller" />
 
-	<!-- Scan for services -->	
+	<context:component-scan base-package="org.cosmic.cart.controller" />	
 	<context:component-scan base-package="org.cosmic.cart.service"/>
-	
-	<!-- Scan for repositories -->
 	<context:component-scan base-package="org.cosmic.cart.repository"/>
+	
+	<bean id="employeeDAO" class="org.cosmic.cart.dao.CartDAOImpl">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/cart" />
+        <property name="username" value="" />
+        <property name="password" value="" />
+    </bean>
 	
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">

@@ -23,25 +23,7 @@ app.config(function($routeProvider) {
 angular.module("controllers",["services"]).
 	controller("CartCtrl",["$scope","CartServer", function($scope,CartServer){
 		CartServer.getAllItems().then(function(data) {
-			$scope.cart = [];
-			CartServer.get(1).then(function(data) {
-				$scope.cart.push(data);
-			});
-			/*var item = {};
-			var items = [];
-			item.id = 1;
-			item.name = "Watch";
-			item.qty = 2;
-			item.price = "20.00";
-			items.push(item);
-			var item2 = {};
-			item2.id = 2;
-			item2.name = "Laptop";
-			item2.qty = 1;
-			item2.price = "1000.00";
-			items.push(item2);
-			$scope.cart = items;*/
-			
+			$scope.cart = data;
 		});
 	}]).
 	controller("EditCtrl",["$scope","$location","$routeParams","CartServer", function($scope,$location,$routeParams,CartServer){
@@ -53,6 +35,11 @@ angular.module("controllers",["services"]).
 				$location.path("/");
 			});
 		};
+		$scope.remove = function() {
+			CartServer.remove($scope.item.itemId).then(function(data) {
+			$location.path("/");
+		});
+	};
 	}]).
 	controller("CreateCtrl",["$scope","$location","CartServer", function($scope,$location,CartServer){
 		$scope.save = function() {
@@ -85,8 +72,8 @@ angular.module("services",[]).
 				});
 			},
 			update : function(item) {
-				return $http({method:"PUT", url:"api/cart/updateItem",
-					cache : false}).
+				return $http({method:"PUT", url:"api/cart/update",
+					data : item, cache : false}).
 				then(function(response) {
 					return response.data;
 				}, function(error) {
@@ -94,12 +81,21 @@ angular.module("services",[]).
 				});
 			},
 			add : function(item) {
-				return $http({method:"POST", url:"api/cart/addItem",
+				return $http({method:"POST", url:"api/cart/add",
 					data : item, cache : false}).
 				then(function(response) {
 					return response.data;
 				}, function(error) {
 					console.log("Error occured while adding item!");
+				});
+			},
+			remove : function(itemId) {
+				return $http({method:"DELETE", url:"api/cart/remove/"+itemId,
+					cache : false}).
+				then(function(response) {
+					return response.data;
+				}, function(error) {
+					console.log("Error occured while removing item!");
 				});
 			}
 		};

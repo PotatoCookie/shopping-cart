@@ -11,6 +11,7 @@
 		<war.plugin.version>2.4</war.plugin.version>
 		<cargo.version>1.4.8</cargo.version>
 		<spring.version>4.0.5.RELEASE</spring.version>
+		<sqlite.version>3.7.2</sqlite.version>
 		<jackson.databind.version>2.4.1.2</jackson.databind.version>
 		<javax.servlet.version>3.1.0</javax.servlet.version>
 	</properties>
@@ -29,6 +30,11 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
