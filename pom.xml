@@ -11,6 +11,7 @@
 		<war.plugin.version>2.4</war.plugin.version>
 		<cargo.version>1.4.8</cargo.version>
 		<spring.version>4.0.5.RELEASE</spring.version>
+		<jackson.databind.version>2.4.1.2</jackson.databind.version>
 		<javax.servlet.version>3.1.0</javax.servlet.version>
 	</properties>
 
@@ -36,6 +37,11 @@
 			<version>${javax.servlet.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.databind.version}</version>
+        </dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
